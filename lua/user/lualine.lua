@@ -264,7 +264,7 @@ M.config = function()
     "b:gitsigns_head",
     icon = " ",
     cond = conditions.check_git_workspace and conditions.hide_in_width,
-    color = { fg = colors.blue },
+    color = { fg = colors.blue, bg = colors.bg },
     padding = 0,
   })
 
@@ -445,7 +445,7 @@ M.config = function()
         if client.name ~= "null-ls" then
           local _added_client = client.name
           only_lsp = only_lsp .. _added_client
-          _added_client = string.sub(client.name, 1, 4)
+          _added_client = string.sub(client.name, 1, 7)
           table.insert(buf_client_names, _added_client)
         end
       end
@@ -517,7 +517,7 @@ M.config = function()
     "fileformat",
     fmt = string.upper,
     icons_enabled = true,
-    color = { fg = colors.green, gui = "bold" },
+    color = { fg = colors.green, bg = colors.bg, gui = "bold" },
     cond = conditions.hide_small,
   })
 
