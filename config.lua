@@ -22,7 +22,7 @@ lvim.builtin.orgmode = { active = false } -- change to true if you want orgmode.
 lvim.builtin.dap.active = true -- change this to enable/disable debugging
 lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy statusline
 lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
-lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
+lvim.builtin.fancy_diff = { active = true } -- enable/disable fancier git diff
 lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
 lvim.builtin.test_runner = { active = true, runner = "ultest" } -- change this to enable/disable ultest or neotest
 lvim.builtin.cheat = { active = true } -- enable/disable cheat.sh integration
@@ -50,7 +50,7 @@ lvim.builtin.file_browser = { active = true } -- enable/disable telescope file b
 lvim.builtin.sniprun = { active = false } -- enable/disable sniprun
 lvim.builtin.tag_provider = "symbols-outline" -- change this to use different tag providers ( symbols-outline or vista )
 lvim.builtin.editorconfig = { active = true } -- enable/disable editorconfig
-lvim.builtin.global_statusline = false -- set true to use global statusline
+lvim.builtin.global_statusline = true -- set true to use global statusline
 lvim.builtin.dressing = { active = false } -- enable to override vim.ui.input and vim.ui.select with telescope
 lvim.builtin.refactoring = { active = true } -- enable to use refactoring.nvim code_actions
 lvim.builtin.tmux_lualine = true -- use vim-tpipeline to integrate lualine and tmux
@@ -58,7 +58,7 @@ lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtua
 if lvim.builtin.lsp_lines then
   lvim.lsp.diagnostics.virtual_text = false
 end
-lvim.builtin.legendary = { active = false } -- enable/disable legendary plugin ( ctrl-p command )
+lvim.builtin.legendary = { active = true } -- enable/disable legendary plugin ( ctrl-p command )
 lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
 lvim.builtin.lir.active = true
 lvim.builtin.breadcrumbs.active = true
@@ -75,15 +75,15 @@ if user and user == "shuvro" then
 
   lvim.builtin.lsp_lines = true
   vim.diagnostic.config { virtual_lines = false } -- i only want to use it explicitly ( by calling the toggle function)
-  lvim.builtin.tmux_lualine = false -- BUG: seems broken atm
+  lvim.builtin.tmux_lualine = true -- BUG: seems broken atm
   if lvim.builtin.tmux_lualine then
     vim.opt.cmdheight = 1 -- WARN: =0 is broken on neovim head (https://github.com/neovim/neovim/issues/20281)
     vim.g.tpipeline_cursormoved = 1
     vim.g.tpipeline_clearstl = 1
   end
   lvim.builtin.custom_web_devicons = true
-  lvim.use_icons = false -- only set to false if you know what are you doing
-  lvim.builtin.sell_your_soul_to_devil = { active = true, prada = false }
+  lvim.use_icons = true -- only set to false if you know what are you doing
+  lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false }
   lvim.lsp.document_highlight = false
   lvim.builtin.task_runner = "async_tasks"
   lvim.builtin.dap.active = true
@@ -98,8 +98,8 @@ if user and user == "shuvro" then
     timeout = 2000,
     filter = require("lvim.lsp.utils").format_filter,
   }
-  lvim.builtin.smooth_scroll = "cinnamon"
-  lvim.builtin.tree_provider = "neo-tree"
+  lvim.builtin.smooth_scroll = "neoscroll"
+  lvim.builtin.tree_provider = "nvimtree"
   require("lvim.lsp.manager").setup("prosemd_lsp", {})
 end
 if lvim.builtin.winbar_provider == "navic" then
@@ -113,7 +113,7 @@ lvim.builtin.latex = {
   rtl_support = true, -- if you want to use xelatex, it's a bit slower but works very well for RTL langs
 }
 lvim.builtin.notify.active = true
-lvim.lsp.automatic_servers_installation = true
+lvim.lsp.installer.setup.automatic_install = true
 if lvim.builtin.cursorline.active then
   lvim.lsp.document_highlight = false
 end
