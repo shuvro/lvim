@@ -3,6 +3,10 @@ local M = {}
 local create_aucmd = vim.api.nvim_create_autocmd
 
 M.config = function()
+  pcall(function()
+    vim.api.nvim_del_augroup_by_name "_last_status"
+  end)
+  vim.api.nvim_clear_autocmds { pattern = "lir", group = "_filetype_settings" }
   vim.api.nvim_create_augroup("_lvim_user", {})
   -- Autocommands
   if lvim.builtin.nonumber_unfocus then
@@ -12,6 +16,21 @@ M.config = function()
       { group = "_lvim_user", pattern = "*", command = "set norelativenumber nonumber nocursorline" }
     )
   end
+
+  -- NOTE: autocommands for "lvimuser/lsp-inlayhints.nvim"
+  -- vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+  -- vim.api.nvim_create_autocmd("LspAttach", {
+  --   group = "LspAttach_inlayhints",
+  --   callback = function(args)
+  --     if not (args.data and args.data.client_id) then
+  --       return
+  --     end
+
+  --     local bufnr = args.buf
+  --     local client = vim.lsp.get_client_by_id(args.data.client_id)
+  --     require("lsp-inlayhints").on_attach(client, bufnr)
+  --   end,
+  -- })
 
   -- TODO: change this to lua
   vim.cmd [[

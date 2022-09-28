@@ -75,9 +75,10 @@ if user and user == "shuvro" then
 
   lvim.builtin.lsp_lines = true
   vim.diagnostic.config { virtual_lines = false } -- i only want to use it explicitly ( by calling the toggle function)
-  lvim.builtin.tmux_lualine = true -- BUG: seems broken atm
+  lvim.builtin.tmux_lualine = true
   if lvim.builtin.tmux_lualine then
-    vim.opt.cmdheight = 1 -- WARN: =0 is broken on neovim head (https://github.com/neovim/neovim/issues/20281)
+    vim.opt.cmdheight = 0
+    vim.opt.laststatus = 0
     vim.g.tpipeline_cursormoved = 1
     vim.g.tpipeline_clearstl = 1
   end

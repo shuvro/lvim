@@ -172,6 +172,9 @@ M.config = function()
       local gitdir = vim.fn.finddir(".git", filepath .. ";")
       return gitdir and #gitdir > 0 and #gitdir < #filepath
     end,
+    tmux_lualine = function()
+      return not (lvim.builtin.tmux_lualine and vim.fn.exists "$TMUX" == 1)
+    end,
   }
 
   -- Config
@@ -306,20 +309,22 @@ M.config = function()
   ins_left {
     function()
       local fname = vim.fn.expand "%:p"
-      local ftype = vim.fn.expand "%:e"
+      local ftype = vim.bo.filetype
       local cwd = vim.api.nvim_call_function("getcwd", {})
-      if
-        string.find(fname, "term") ~= nil
-        and string.find(fname, "lazygit;#toggleterm") ~= nil
-        and (vim.fn.has "linux" == 1 or vim.fn.has "mac" == 1)
-      then
-        local git_repo_cmd = io.popen 'git remote get-url origin | tr -d "\n"'
-        local git_repo = git_repo_cmd:read "*a"
-        git_repo_cmd:close()
-        local git_branch_cmd = io.popen 'git branch --show-current | tr -d "\n"'
-        local git_branch = git_branch_cmd:read "*a"
-        git_branch_cmd:close()
-        return git_repo .. "~" .. git_branch
+      if (vim.fn.has "linux" == 1) or (vim.fn.has "mac" == 1) then
+        if string.find(fname, "zsh;#toggleterm") ~= nil then
+          return cwd
+        elseif string.find(fname, "lazygit;#toggleterm") ~= nil then
+          local git_repo_cmd = io.popen 'git remote get-url origin | tr -d "\n"'
+          local git_repo = git_repo_cmd:read "*a"
+          git_repo_cmd:close()
+          local git_branch_cmd = io.popen 'git branch --show-current | tr -d "\n"'
+          local git_branch = git_branch_cmd:read "*a"
+          git_branch_cmd:close()
+          return git_repo .. "~" .. git_branch
+        elseif #ftype < 1 and string.find(fname, "term") ~= nil then
+          return cwd
+        end
       end
       local show_name = vim.fn.expand "%:t"
       if #cwd > 0 and #ftype > 0 then
@@ -396,7 +401,7 @@ M.config = function()
     end,
     padding = { left = 0, right = 0 },
     color = { fg = colors.bg },
-    cond = nil,
+    cond = conditions.tmux_lualine,
   }
 
   ins_right {
@@ -405,7 +410,7 @@ M.config = function()
     end,
     padding = { left = 0, right = 0 },
     color = { fg = colors.bg },
-    cond = nil,
+    cond = conditions.tmux_lualine,
   }
 
   ins_right {
