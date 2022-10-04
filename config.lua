@@ -64,6 +64,7 @@ lvim.builtin.lir.active = true
 lvim.builtin.breadcrumbs.active = true
 lvim.builtin.illuminate.active = true
 lvim.builtin.indentlines.active = true
+lvim.builtin.noice = { active = false }
 
 local user = os.getenv "USER"
 if user and user == "shuvro" then
@@ -101,6 +102,7 @@ if user and user == "shuvro" then
   }
   lvim.builtin.smooth_scroll = "neoscroll"
   lvim.builtin.tree_provider = "nvimtree"
+  lvim.builtin.noice.active = true
   require("lvim.lsp.manager").setup("prosemd_lsp", {})
 end
 if lvim.builtin.winbar_provider == "navic" then
