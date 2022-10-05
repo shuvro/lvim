@@ -135,16 +135,6 @@ M.config = function()
       event = "BufRead",
     },
     {
-      "rcarriga/nvim-dap-ui",
-      config = function()
-        require("user.dapui").config()
-      end,
-      ft = { "python", "rust", "go" },
-      event = "BufReadPost",
-      requires = { "mfussenegger/nvim-dap" },
-      disable = not lvim.builtin.dap.active,
-    },
-    {
       "andymass/vim-matchup",
       event = "BufReadPost",
       config = function()
@@ -193,7 +183,7 @@ M.config = function()
       config = function()
         require("user.colorizer").config()
       end,
-      event = "BufRead",
+      -- event = "BufRead", -- BUG: doesn't work on the first file when lazy loaded
     },
     {
       "folke/persistence.nvim",
@@ -426,7 +416,7 @@ M.config = function()
     {
       "abzcoding/nvim-mini-file-icons",
       config = function()
-        require("user.dev_icons").set_icon()
+        require("nvim-web-devicons").setup()
       end,
       disable = lvim.use_icons or not lvim.builtin.custom_web_devicons,
     },
@@ -630,6 +620,7 @@ M.config = function()
       end,
       requires = {
         "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
       },
       disable = not lvim.builtin.noice.active,
     },

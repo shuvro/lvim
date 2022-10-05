@@ -9,6 +9,44 @@ M.config = function()
     cmdline = {
       view = "cmdline",
     },
+    popupmenu = {
+      enabled = not lvim.builtin.fancy_wild_menu.active,
+    },
+    routes = {
+      {
+        filter = { event = "msg_show", kind = "search_count" },
+        opts = { skip = true },
+      },
+      {
+        view = "split",
+        filter = { event = "msg_show", min_height = 20 },
+      },
+      {
+        filter = {
+          event = "msg_show",
+          find = " lines,",
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "msg_show",
+          find = "go up one level",
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "msg_show",
+          find = "yanked",
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = { find = "No active Snippet" },
+        opts = { skip = true },
+      },
+    },
   }
 end
 
