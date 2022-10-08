@@ -10,6 +10,9 @@ vim.lsp.set_log_level "warn"
 lvim.log.level = "warn"
 -- vim.o.conceallevel = 2 -- uncomment if you want to see concealed text
 require("user.neovim").config()
+lvim.lsp.code_lens_refresh = true
+lvim.lsp.diagnostics.virtual_text = false -- remove this line if you want to see inline errors
+lvim.lsp.automatic_servers_installation = false
 
 -- Customization
 -- =========================================
@@ -64,10 +67,18 @@ lvim.builtin.lir.active = true
 lvim.builtin.breadcrumbs.active = true
 lvim.builtin.illuminate.active = true
 lvim.builtin.indentlines.active = true
+lvim.builtin.notify.active = true
 lvim.builtin.noice = { active = false }
+lvim.builtin.go_programming = { active = false } -- gopher.nvim + nvim-dap-go
+lvim.builtin.python_programming = { active = false } -- swenv.nvim + nvim-dap-python
+lvim.builtin.web_programming = { active = false } -- typescript.nvim + package-info.nvimconfig
+lvim.builtin.rust_programming = { active = false } -- rust_tools.nvim + crates.nvim
 
+-- Custom User Config
+-- =========================================
 local user = os.getenv "USER"
 if user and user == "shuvro" then
+  require("user.custom_user").config()
   -- WARN: these only work on neovim head
   vim.opt.mousescroll = { "ver:1", "hor:6" }
   vim.o.mousefocus = true
@@ -105,6 +116,9 @@ if user and user == "shuvro" then
   lvim.builtin.noice.active = true
   require("lvim.lsp.manager").setup("prosemd_lsp", {})
 end
+
+-- Additional Actions Based on Custom User Config
+-- =========================================
 if lvim.builtin.winbar_provider == "navic" then
   vim.opt.showtabline = 1
   lvim.keys.normal_mode["<tab>"] =
@@ -113,7 +127,6 @@ if lvim.builtin.winbar_provider == "navic" then
   lvim.builtin.breadcrumbs.active = true
 end
 lvim.builtin.nvimtree.active = lvim.builtin.tree_provider == "nvimtree"
-lvim.lsp.diagnostics.virtual_text = false -- remove this line if you want to see inline errors
 lvim.builtin.latex = {
   view_method = "zathura", -- change to zathura if you are on linux
   preview_exec = "/home/shuvro/.config/zoomus.conf", -- change this to zathura as well
@@ -124,7 +137,9 @@ lvim.lsp.installer.setup.automatic_install = true
 if lvim.builtin.cursorline.active then
   lvim.lsp.document_highlight = false
 end
-lvim.lsp.code_lens_refresh = true
+
+-- Override Lunarvim defaults
+-- =========================================
 require("user.builtin").config()
 
 -- StatusLine
@@ -145,6 +160,7 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
   "clangd",
   "dockerls",
   "gopls",
+  "golangci_lint_ls",
   "jdtls",
   "pyright",
   "rust_analyzer",
@@ -163,6 +179,6 @@ require("user.plugins").config()
 -- =========================================
 require("user.autocommands").config()
 
--- Additional keybindings
+-- Additional Keybindings
 -- =========================================
 require("user.keybindings").config()
