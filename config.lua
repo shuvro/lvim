@@ -71,12 +71,13 @@ lvim.builtin.notify.active = true
 lvim.builtin.noice = { active = false }
 lvim.builtin.go_programming = { active = false } -- gopher.nvim + nvim-dap-go
 lvim.builtin.python_programming = { active = false } -- swenv.nvim + nvim-dap-python
-lvim.builtin.web_programming = { active = false } -- typescript.nvim + package-info.nvimconfig
+lvim.builtin.web_programming = { active = false } -- typescript.nvim + package-info.nvim
 lvim.builtin.rust_programming = { active = false } -- rust_tools.nvim + crates.nvim
+lvim.builtin.cmp.cmdline.enable = false
 
 -- Custom User Config
 -- =========================================
-local user = os.getenv "USER"
+local user = vim.env.USER
 if user and user == "shuvro" then
   require("user.custom_user").config()
 end

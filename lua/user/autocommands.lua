@@ -3,9 +3,6 @@ local M = {}
 local create_aucmd = vim.api.nvim_create_autocmd
 
 M.config = function()
-  pcall(function()
-    vim.api.nvim_del_augroup_by_name "_last_status"
-  end)
   vim.api.nvim_clear_autocmds { pattern = "lir", group = "_filetype_settings" }
   vim.api.nvim_create_augroup("_lvim_user", {})
   -- Autocommands
@@ -106,7 +103,7 @@ augroup END
   })
 
   local codelens_viewer = "lua require('user.codelens').show_line_sign()"
-  local user = os.getenv "USER"
+  local user = vim.env.USER
   if user and user == "abz" then
     create_aucmd("CursorHold", {
       group = "_lvim_user",

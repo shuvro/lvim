@@ -65,6 +65,33 @@ M.config = function()
       config = { sources = function(...) end },
     }
   end
+  if lvim.builtin.fancy_wild_menu.active then
+    local cmdline_opts = {
+      mapping = cmp.mapping.preset.cmdline {},
+      sources = {
+        { name = "cmdline" },
+        { name = "path" },
+      },
+    }
+    if lvim.builtin.noice.active then
+      cmdline_opts.window = {
+        completion = {
+          border = {
+            { "╭", "CmpBorder" },
+            { "─", "CmpBorder" },
+            { "╮", "CmpBorder" },
+            { "│", "CmpBorder" },
+            { "╯", "CmpBorder" },
+            { "─", "CmpBorder" },
+            { "╰", "CmpBorder" },
+            { "│", "CmpBorder" },
+          },
+          winhighlight = "Search:None",
+        },
+      }
+    end
+    cmp.setup.cmdline(":", cmdline_opts)
+  end
   cmp.setup.filetype("toml", {
     sources = cmp.config.sources({
       { name = "nvim_lsp", max_item_count = 8 },
@@ -187,7 +214,7 @@ M.config = function()
     { " ", "FloatBorder" },
     { " ", "FloatBorder" },
   }
-  if os.getenv "KITTY_WINDOW_ID" then
+  if vim.env.KITTY_WINDOW_ID then
     lvim.lsp.float.border = {
       { "🭽", "FloatBorder" },
       { "▔", "FloatBorder" },
@@ -329,14 +356,28 @@ M.config = function()
       lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
+        ["aA"] = "@attribute.outer",
+        ["iA"] = "@attribute.inner",
+        ["ab"] = "@block.outer",
+        ["ib"] = "@block.inner",
+        ["ac"] = "@call.outer",
+        ["ic"] = "@call.inner",
+        ["at"] = "@class.outer",
+        ["it"] = "@class.inner",
+        ["a/"] = "@comment.outer",
+        ["i/"] = "@comment.inner",
+        ["ai"] = "@conditional.outer",
+        ["ii"] = "@conditional.inner",
+        ["aF"] = "@frame.outer",
+        ["iF"] = "@frame.inner",
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
         ["al"] = "@loop.outer",
         ["il"] = "@loop.inner",
         ["aa"] = "@parameter.outer",
         ["ia"] = "@parameter.inner",
+        ["is"] = "@scopename.inner",
+        ["as"] = "@statement.outer",
         ["av"] = "@variable.outer",
         ["iv"] = "@variable.inner",
       },
@@ -461,7 +502,6 @@ M.config = function()
       ["<c-j>"] = actions.move_selection_next,
       ["<c-k>"] = actions.move_selection_previous,
       ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-      ["<C-d>"] = require("telescope.actions").delete_buffer,
     },
     n = {
       ["<esc>"] = actions.close,
@@ -785,19 +825,6 @@ M.lsp_on_attach_callback = function(client, _)
     end
   end
   which_key.register(mappings, opts)
-end
-
-M.setup_cmdline = function()
-  local found, cmp = pcall(require, "cmp")
-  if found then
-    cmp.setup.cmdline(":", {
-      mapping = cmp.mapping.preset.cmdline {},
-      sources = {
-        { name = "cmdline" },
-        { name = "path" },
-      },
-    })
-  end
 end
 
 return M

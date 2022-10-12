@@ -5,6 +5,7 @@ M.config = function()
   vim.opt.mousescroll = { "ver:1", "hor:6" }
   vim.o.mousefocus = true
   vim.o.mousemoveevent = true
+  vim.o.splitkeep = "screen"
   ---
 
   lvim.builtin.lsp_lines = true
@@ -22,7 +23,7 @@ M.config = function()
   lvim.lsp.document_highlight = false
   lvim.builtin.task_runner = "async_tasks"
   lvim.builtin.dap.active = true
-  vim.g.instant_username = user
+  vim.g.instant_username = vim.env.USER
   lvim.builtin.global_statusline = true
   lvim.builtin.dressing.active = true
   lvim.builtin.fancy_wild_menu.active = true
