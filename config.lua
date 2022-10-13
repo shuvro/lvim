@@ -6,7 +6,7 @@ lvim.colorscheme = "tokyonight" -- set to a custom theme
 lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 lvim.transparent_window = false -- enable/disable transparency
 lvim.debug = false
-vim.lsp.set_log_level "warn"
+vim.lsp.set_log_level "error"
 lvim.log.level = "warn"
 -- vim.o.conceallevel = 2 -- uncomment if you want to see concealed text
 require("user.neovim").config()
@@ -90,6 +90,9 @@ if lvim.builtin.winbar_provider == "navic" then
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
   lvim.builtin.bufferline.active = false
   lvim.builtin.breadcrumbs.active = true
+end
+if lvim.builtin.breadcrumbs.active and lvim.builtin.noice.active then
+  table.insert(lvim.builtin.breadcrumbs.winbar_filetype_exclude, "vim")
 end
 lvim.builtin.nvimtree.active = lvim.builtin.tree_provider == "nvimtree"
 lvim.builtin.latex = {
