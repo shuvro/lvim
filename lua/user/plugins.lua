@@ -22,12 +22,9 @@ M.config = function()
       "catppuccin/nvim",
       as = "catppuccin",
       run = ":CatppuccinCompile",
-      setup = function()
-        vim.g.catppuccin_flavour = "mocha"
-      end,
       config = function()
         require("user.theme").catppuccin()
-        vim.cmd [[colorscheme catppuccin]]
+        vim.cmd [[colorscheme catppuccin-mocha]]
       end,
       cond = function()
         local _time = os.date "*t"
@@ -700,6 +697,13 @@ M.config = function()
         }
       end,
       disable = not lvim.builtin.web_programming.active,
+    },
+    {
+      "smjonas/inc-rename.nvim",
+      config = function()
+        require("inc_rename").setup()
+      end,
+      disable = not lvim.builtin.noice.active,
     },
     -- TODO: set this up when https://github.com/neovim/neovim/pull/20130 is merged
     -- {

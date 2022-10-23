@@ -328,10 +328,21 @@ M.config = function()
       { "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", "Comment" }
   end
 
-  lvim.builtin.which_key.vmappings["l"] = {
-    name = "+Lsp",
-    r = { "<ESC><CMD>lua vim.lsp.buf.rename()<CR>", "Rename" },
-  }
+  if lvim.builtin.noice.active then
+    lvim.builtin.which_key.mappings["l"]["r"] = { ":IncRename ", "Rename" }
+    lvim.builtin.which_key.mappings["l"]["R"] = {
+      function()
+        return ":IncRename " .. vim.fn.expand "<cword>"
+      end,
+      "Rename keep",
+      expr = true,
+    }
+  else
+    lvim.builtin.which_key.vmappings["l"] = {
+      name = "+Lsp",
+      r = { "<ESC><CMD>lua vim.lsp.buf.rename()<CR>", "Rename" },
+    }
+  end
   lvim.builtin.which_key.mappings["lp"] = {
     name = "Peek",
     d = { "<cmd>lua require('user.peek').Peek('definition')<cr>", "Definition" },
