@@ -448,6 +448,7 @@ _Symbols Outline_
 - [noice.nvim](https://github.com/folke/noice.nvim)
 - [nvim-dap-vscode-js](https://github.com/mxsdev/nvim-dap-vscode-js)
 - [inc-rename](https://github.com/smjonas/inc-rename.nvim)
+- [hlargs.nvim](https://github.com/m-demare/hlargs.nvim)
 
 </details>
 
