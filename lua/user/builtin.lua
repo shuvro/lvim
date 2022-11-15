@@ -294,6 +294,15 @@ M.config = function()
   -- =========================================
   lvim.builtin.mason.ui.icons = kind.mason
 
+  -- Noice
+  -- =========================================
+  if lvim.builtin.noice.active then
+    local found, noice_util = pcall(require, "noice.util")
+    if found then
+      vim.lsp.handlers["textDocument/signatureHelp"] = noice_util.protect(require("noice.lsp").signature)
+    end
+  end
+
   -- NvimTree
   -- =========================================
   lvim.builtin.nvimtree.setup.diagnostics = {
@@ -317,9 +326,8 @@ M.config = function()
 
   -- Theme
   -- =========================================
-  lvim.builtin.theme.options.style = "storm"
-  lvim.builtin.theme.options.styles.comments = {}
-  lvim.builtin.theme.options.dim_inactive = true
+  require("user.theme").tokyonight()
+  lvim.builtin.theme.name = "tokyonight"
 
   -- Toggleterm
   -- =========================================

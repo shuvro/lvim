@@ -57,10 +57,16 @@ M.config = function()
         format_done = {},
       },
       hover = { enabled = true },
+      signature = { enabled = false, auto_open = { enabled = false } },
+      override = {
+        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        ["vim.lsp.util.stylize_markdown"] = true,
+        ["cmp.entry.get_documentation"] = true,
+      },
     },
     cmdline = {
       format = {
-        filter = { pattern = "^:%s*!", icon = "", ft = "sh" },
+        filter = { pattern = "^:%s*!", icon = " ", ft = "sh" },
         IncRename = {
           pattern = "^:%s*IncRename%s+",
           icon = " ",
@@ -93,16 +99,13 @@ M.config = function()
     },
     routes = {
       {
-        view = "notify",
-        filter = { event = "msg_showmode" },
+        filter = { event = "msg_show", min_height = 10 },
+        view = "split",
+        opts = { enter = true },
       },
       {
         filter = { event = "msg_show", kind = "search_count" },
         opts = { skip = true },
-      },
-      {
-        view = "split",
-        filter = { event = "msg_show", min_height = 10 },
       },
       {
         filter = {
@@ -141,6 +144,10 @@ M.config = function()
       },
       {
         filter = { find = "No active Snippet" },
+        opts = { skip = true },
+      },
+      {
+        filter = { find = "waiting for cargo metadata" },
         opts = { skip = true },
       },
     },

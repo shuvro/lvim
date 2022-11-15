@@ -64,17 +64,6 @@ M.set_hop_keymaps = function()
   )
 end
 
-M.set_lightspeed_keymaps = function()
-  vim.cmd [[
-nmap s <Plug>Lightspeed_s
-nmap S <Plug>Lightspeed_S
-nmap <expr> f reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_f" : "f"
-nmap <expr> F reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_F" : "F"
-nmap <expr> t reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_t" : "t"
-nmap <expr> T reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_T" : "T"
-  ]]
-end
-
 M.set_hlslens_keymaps = function()
   local opts = { noremap = true, silent = true }
   vim.api.nvim_set_keymap(
@@ -212,7 +201,16 @@ M.config = function()
   }
   lvim.keys.insert_mode["<A-a>"] = "<ESC>ggVG<CR>"
   lvim.keys.insert_mode["jk"] = "<ESC>:w<CR>"
-  lvim.keys.insert_mode["<C-s>"] = "<cmd>lua vim.lsp.buf.signature_help()<cr>"
+  if lvim.builtin.noice.active then
+    lvim.keys.insert_mode["<C-s>"] = function()
+      local params = vim.lsp.util.make_position_params(0, "utf-16")
+      vim.lsp.buf_request(0, "textDocument/signatureHelp", params, function(err, result, ctx)
+        require("noice.lsp").signature(err, result, ctx, {
+          trigger = true,
+        })
+      end)
+    end
+  end
   lvim.keys.insert_mode["<A-s>"] =
     "<cmd>lua require('telescope').extensions.luasnip.luasnip(require('telescope.themes').get_cursor({}))<CR>"
   lvim.keys.command_mode["w!!"] = "execute 'silent! write !sudo tee % >/dev/null' <bar> edit!"
