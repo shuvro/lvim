@@ -54,6 +54,8 @@ exceptions:
   - DLL
   - DNS
   - DOM
+  - DOS
+  - DTD
   - DSA
   - DSS
   - DVCS
@@ -99,6 +101,7 @@ exceptions:
   - IBM
   - ICMP
   - IDE
+  - IDOR
   - IID
   - IMAP
   - IOPS
@@ -154,6 +157,7 @@ exceptions:
   - RAID
   - RAM
   - RBAC
+  - RCE
   - RDP
   - REST
   - RFB
@@ -199,6 +203,7 @@ exceptions:
   - SSL
   - SSO
   - SSRF
+  - SSTI
   - SVG
   - SVN
   - SYN
