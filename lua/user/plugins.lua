@@ -539,6 +539,7 @@ M.config = function()
         require("user.cle").config()
       end,
       ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
+      disable = not lvim.builtin.cpp_programming.active,
     },
     {
       "editorconfig/editorconfig-vim",
@@ -741,14 +742,21 @@ M.config = function()
       end,
       event = { "BufReadPost", "BufNew" },
     },
-    -- TODO: set this up when https://github.com/neovim/neovim/pull/20130 is merged
-    -- {
-    --   "lvimuser/lsp-inlayhints.nvim",
-    --   branch = "anticonceal",
-    --   config = function()
-    --     require("lsp-inlayhints").setup()
-    --   end,
-    -- },
+    {
+      "Civitasv/cmake-tools.nvim",
+      config = function()
+        require("user.cle").cmake_config()
+      end,
+      ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
+      disable = not lvim.builtin.cpp_programming.active,
+    },
+    {
+      "lvimuser/lsp-inlayhints.nvim",
+      config = function()
+        require("lsp-inlayhints").setup()
+      end,
+      disable = not lvim.builtin.inlay_hints.active,
+    },
   }
 end
 
