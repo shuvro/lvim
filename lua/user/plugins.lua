@@ -24,7 +24,7 @@ M.config = function()
         require("user.theme").rose_pine()
         lvim.colorscheme = "rose-pine"
       end,
-      enabled = function()
+      cond = function()
         local _time = os.date "*t"
         return (_time.hour >= 1 and _time.hour < 9) and lvim.builtin.time_based_themes
       end,
@@ -37,7 +37,7 @@ M.config = function()
         require("user.theme").catppuccin()
         lvim.colorscheme = "catppuccin-mocha"
       end,
-      enabled = function()
+      cond = function()
         local _time = os.date "*t"
         return (_time.hour >= 17 and _time.hour < 21) and lvim.builtin.time_based_themes
       end,
@@ -48,7 +48,7 @@ M.config = function()
         require("user.theme").kanagawa()
         lvim.colorscheme = "kanagawa"
       end,
-      enabled = function()
+      cond = function()
         local _time = os.date "*t"
         return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
           and lvim.builtin.time_based_themes
@@ -457,6 +457,9 @@ M.config = function()
     },
     {
       "kevinhwang91/nvim-hlslens",
+      config = function()
+        require("user.hlslens").config()
+      end,
       event = "BufReadPost",
       enabled = lvim.builtin.hlslens.active,
     },
@@ -759,6 +762,11 @@ M.config = function()
         require("lsp-inlayhints").setup()
       end,
       enabled = lvim.builtin.inlay_hints.active,
+    },
+    {
+      "raimon49/requirements.txt.vim",
+      event = "VeryLazy",
+      enabled = lvim.builtin.python_programming.active,
     },
   }
 end
