@@ -32,7 +32,6 @@ M.config = function()
     {
       "catppuccin/nvim",
       name = "catppuccin",
-      build = ":CatppuccinCompile",
       config = function()
         require("user.theme").catppuccin()
         lvim.colorscheme = "catppuccin-mocha"
@@ -140,7 +139,7 @@ M.config = function()
     },
     {
       "kevinhwang91/nvim-bqf",
-      lazy = true,
+      event = "BufReadPost",
       config = function()
         require("user.bqf").config()
       end,
@@ -273,7 +272,11 @@ M.config = function()
     },
     {
       "lervag/vimtex",
+      init = function()
+        vim.g.vimtex_view_enabled = true
+      end,
       ft = "tex",
+      lazy = false,
     },
     {
       "nvim-neotest/neotest",
@@ -639,7 +642,7 @@ M.config = function()
     { "MunifTanjim/nui.nvim" },
     {
       "folke/noice.nvim",
-      event = "VimEnter",
+      event = "VeryLazy",
       config = function()
         require("user.noice").config()
       end,
