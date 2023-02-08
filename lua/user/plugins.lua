@@ -783,14 +783,6 @@ M.config = function()
       event = "VeryLazy",
       enabled = lvim.builtin.mind.active,
     },
-    {
-      "ellisonleao/gruvbox.nvim",
-      config = function()
-        require("user.gruvbox").config()
-      end,
-      event = "VeryLazy",
-      enabled = lvim.colorscheme == "gruvbox",
-    },
   }
 end
 
