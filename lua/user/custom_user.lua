@@ -9,6 +9,7 @@ M.config = function()
   end
 
   lvim.colorscheme = "gruvbox"
+  lvim.builtin.time_based_themes = false 
   lvim.builtin.lsp_lines = true
   vim.diagnostic.config { virtual_lines = false } -- i only want to use it explicitly ( by calling the toggle function)
   lvim.builtin.tmux_lualine = false -- WARN: doesn't work with neovim nightly
@@ -19,7 +20,7 @@ M.config = function()
   end
   -- lvim.builtin.custom_web_devicons = true
   lvim.use_icons = true -- only set to false if you know what are you doing
-  lvim.builtin.sell_your_soul_to_devil = { active = true, prada = false }
+  lvim.builtin.sell_your_soul_to_devil = { active = true, prada = true }
   lvim.lsp.document_highlight = false
   lvim.builtin.task_runner = "async_tasks"
   lvim.builtin.dap.active = true
@@ -59,7 +60,7 @@ M.config = function()
   lvim.builtin.borderless_cmp = true
   lvim.builtin.colored_args = true
   lvim.builtin.inlay_hints.active = true
-  lvim.reload_config_on_save = false -- NOTE: i don't like this
+  lvim.reload_config_on_save = true -- NOTE: i don't like this
   lvim.builtin.mind.active = true
   -- require("lvim.lsp.manager").setup("prosemd_lsp", {})
 end
