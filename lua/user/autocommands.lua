@@ -123,7 +123,7 @@ M.config = function()
 
   local codelens_viewer = "lua require('user.codelens').show_line_sign()"
   local user = vim.env.USER
-  if user and user == "abz" then
+  if user and user == "shuvro" then
     create_aucmd("CursorHold", {
       group = "_lvim_user",
       pattern = { "*.rs", "*.go", "*.ts", "*.tsx" },

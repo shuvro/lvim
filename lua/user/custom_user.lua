@@ -9,7 +9,8 @@ M.config = function()
   end
 
   lvim.colorscheme = "gruvbox"
-  lvim.builtin.time_based_themes = false 
+  lvim.builtin.mini_animate.active = true
+  lvim.builtin.time_based_themes = false
   lvim.builtin.lsp_lines = true
   vim.diagnostic.config { virtual_lines = false } -- i only want to use it explicitly ( by calling the toggle function)
   lvim.builtin.tmux_lualine = false
