@@ -64,8 +64,8 @@ M.config = function()
   lvim.builtin.cpp_programming.active = true
   lvim.builtin.borderless_cmp = true
   lvim.builtin.colored_args = true
-  lvim.builtin.inlay_hints.active = true
-  lvim.reload_config_on_save = true -- NOTE: i don't like this
+  lvim.builtin.inlay_hints.active = false
+  lvim.reload_config_on_save = false -- NOTE: i don't like this
   lvim.builtin.mind.active = true
   -- require("lvim.lsp.manager").setup("prosemd_lsp", {})
 end
