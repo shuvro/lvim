@@ -519,6 +519,7 @@ M.config = function()
     },
     {
       "j-hui/fidget.nvim",
+      branch = "legacy",
       config = function()
         require("user.fidget_spinner").config()
       end,
@@ -756,13 +757,6 @@ M.config = function()
       end,
       ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
       enabled = lvim.builtin.cpp_programming.active,
-    },
-    {
-      "lvimuser/lsp-inlayhints.nvim",
-      config = function()
-        require("lsp-inlayhints").setup()
-      end,
-      enabled = lvim.builtin.inlay_hints.active,
     },
     {
       "raimon49/requirements.txt.vim",
