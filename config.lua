@@ -72,11 +72,13 @@ lvim.builtin.bigfile.active = true
 lvim.builtin.indentlines.mine = false
 -- WARN: mind plugin is deprecated ( use with caution )
 lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
+lvim.builtin.mini_animate = { active = false } -- enable/disable mini-animate.nvim
 
 -- Custom User Config
 -- =========================================
 local user = vim.env.USER
-if user and user == "abz" then
+
+if user and user == "shuvro" then
   lvim.reload_config_on_save = true
   require("user.custom_user").config()
 end
