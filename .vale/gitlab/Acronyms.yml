@@ -126,6 +126,7 @@ exceptions:
   - IAT
   - IBM
   - ICMP
+  - ICO
   - IDA
   - IDE
   - IDOR
@@ -193,6 +194,7 @@ exceptions:
   - PGP
   - PHP
   - PNG
+  - POC
   - POSIX
   - POST
   - PPP

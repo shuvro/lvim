@@ -825,6 +825,11 @@ M.config = function()
       enabled = lvim.builtin.sell_your_soul_to_devil.openai,
     },
     {
+      "lukas-reineke/indent-blankline.nvim",
+      name = "new-indent",
+      main = "ibl",
+      enabled = lvim.builtin.indentlines.mine,
+    },
       "ellisonleao/gruvbox.nvim",
       config = function()
         require("user.gruvbox").config()
