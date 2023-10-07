@@ -19,6 +19,7 @@ exceptions:
   - ACL
   - ACK
   - AJAX
+  - AMSI
   - ANSI
   - API
   - APT
@@ -170,6 +171,7 @@ exceptions:
   - NDA
   - NFS
   - NFT
+  - NGFW
   - NGINX
   - NIST
   - NOTE
@@ -225,10 +227,12 @@ exceptions:
   - RVA
   - RVM
   - SAAS
+  - SAM
   - SAML
   - SANS
   - SAST
   - SATA
+  - SBOM
   - SCA
   - SCIM
   - SCORE
@@ -270,6 +274,7 @@ exceptions:
   - SSO
   - SSRF
   - SSTI
+  - SUID
   - SVG
   - SVN
   - SYN
@@ -293,6 +298,7 @@ exceptions:
   - URL
   - USB
   - UTC
+  - UTM
   - UTF
   - UUID
   - VBS
@@ -301,9 +307,12 @@ exceptions:
   - VNC
   - VPC
   - VPN
+  - VSS
   - WAF
   - WHQL
   - WIP
+  - WMIC
+  - WPAD
   - WSDL
   - WSL
   - XDR
