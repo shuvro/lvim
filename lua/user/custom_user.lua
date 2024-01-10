@@ -8,8 +8,7 @@ M.config = function()
     vim.o.splitkeep = "screen"
   end
 
-  lvim.colorscheme = "gruvbox"
-  lvim.builtin.mini_animate.active = true
+  lvim.colorscheme = "catppuccin"
   lvim.builtin.time_based_themes = false
   lvim.builtin.lsp_lines = true
   vim.diagnostic.config { virtual_lines = false } -- i only want to use it explicitly ( by calling the toggle function)
