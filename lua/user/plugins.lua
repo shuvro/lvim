@@ -863,6 +863,10 @@ M.config = function()
       enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
     },
     {
+      "nvim-neotest/nvim-nio",
+      enabled = lvim.builtin.dap.active,
+    },
+    {
       "ellisonleao/gruvbox.nvim",
       config = function()
         require("user.gruvbox").config()
