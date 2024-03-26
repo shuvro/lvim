@@ -867,6 +867,13 @@ M.config = function()
       enabled = lvim.builtin.dap.active,
     },
     {
+      "mireq/large_file",
+      config = function()
+        require("large_file").setup()
+      end,
+      enabled = not lvim.builtin.bigfile.active,
+    },
+    {
       "ellisonleao/gruvbox.nvim",
       config = function()
         require("user.gruvbox").config()
