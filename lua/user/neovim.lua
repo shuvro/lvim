@@ -53,6 +53,7 @@ M.config = function()
   vim.wo.foldlevel = 4
   vim.wo.foldnestmax = 3
   vim.wo.foldminlines = 1
+  vim.o.foldtext = "v:lua.HighlightedFoldtext()"
   vim.opt.guifont = "FiraCode Nerd Font:h13"
   vim.opt.cmdheight = 1
   vim.g.dashboard_enable_session = 0
@@ -269,18 +270,6 @@ function _G.qftf(info)
     table.insert(ret, str)
   end
   return ret
-end
-
-function M.inlay_hints(buf, value)
-  local ih = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
-  if type(ih) == "function" then
-    ih(buf, value)
-  elseif type(ih) == "table" and ih.enable then
-    if value == nil then
-      value = not ih.is_enabled(buf)
-    end
-    ih.enable(buf, value)
-  end
 end
 
 return M

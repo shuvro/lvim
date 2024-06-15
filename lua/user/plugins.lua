@@ -27,7 +27,6 @@ M.config = function()
       cond = function()
         local _time = os.date "*t"
         return (_time.hour >= 1 and _time.hour < 9) and lvim.builtin.time_based_themes
-        -- return false
       end,
     },
     {
@@ -78,16 +77,11 @@ M.config = function()
     {
       "folke/trouble.nvim",
       config = function()
-        require("trouble").setup {
-          auto_open = false,
-          auto_close = true,
-          padding = false,
-          height = 10,
-          use_diagnostic_signs = true,
-        }
+        require("user.troubl").config()
       end,
       event = "VeryLazy",
       cmd = "Trouble",
+      enabled = lvim.builtin.trouble.active,
     },
     {
       "ggandor/leap.nvim",
@@ -514,7 +508,6 @@ M.config = function()
     },
     {
       "j-hui/fidget.nvim",
-      branch = "legacy",
       config = function()
         require("user.fidget_spinner").config()
       end,
