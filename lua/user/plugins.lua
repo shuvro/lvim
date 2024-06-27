@@ -6,17 +6,16 @@ M.config = function()
     neoclip_req = {}
   end
   lvim.plugins = {
-    -- {
-    --   "folke/tokyonight.nvim",
-    --   config = function()
-    --     require("user.theme").tokyonight()
-    --     vim.cmd [[colorscheme tokyonight]]
-    --   end,
-    --   cond = function()
-    --     local _time = os.date "*t"
-    --     return (_time.hour >= 9 and _time.hour < 17) and lvim.builtin.time_based_themes
-    --   end,
-    -- },
+    {
+      "folke/tokyonight.nvim",
+      config = function()
+        require("user.theme").tokyonight()
+        local _time = os.date "*t"
+        if (_time.hour >= 9 and _time.hour < 17) and lvim.builtin.time_based_themes then
+          lvim.colorscheme = "tokyonight-moon"
+        end
+      end,
+    },
     {
       "rose-pine/neovim",
       name = "rose-pine",
@@ -146,11 +145,6 @@ M.config = function()
         vim.g.matchup_matchparen_deferred = 1
         vim.g.matchup_matchparen_offscreen = { method = "popup" }
       end,
-    },
-    {
-      "iamcco/markdown-preview.nvim",
-      build = "cd app && npm install",
-      ft = "markdown",
     },
     {
       "mrcjkb/rustaceanvim",
@@ -366,12 +360,10 @@ M.config = function()
       "declancm/cinnamon.nvim",
       config = function()
         require("cinnamon").setup {
-          default_keymaps = true,
-          default_delay = 4,
-          extra_keymaps = true,
-          extended_keymaps = false,
-          centered = true,
-          scroll_limit = 100,
+          keymaps = { extra = true },
+          options = {
+            delay = 4,
+          },
         }
       end,
       event = "BufRead",
@@ -821,6 +813,9 @@ M.config = function()
       "lukas-reineke/indent-blankline.nvim",
       name = "new-indent",
       main = "ibl",
+      config = function()
+        require("user.indent_blankline").setup()
+      end,
       enabled = lvim.builtin.indentlines.mine,
     },
     {
@@ -865,6 +860,15 @@ M.config = function()
         require("large_file").setup()
       end,
       enabled = not lvim.builtin.bigfile.active,
+    },
+    {
+      "abzcoding/markdown.nvim",
+      branch = "feature/fancy",
+      name = "render-markdown",
+      config = function()
+        require("user.markd").config()
+      end,
+      enabled = lvim.builtin.markdown.active,
     },
     {
       "ellisonleao/gruvbox.nvim",
