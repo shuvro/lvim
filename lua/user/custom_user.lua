@@ -8,6 +8,8 @@ M.config = function()
     vim.o.splitkeep = "screen"
   end
 
+  lvim.colorscheme = "catppuccin"
+  lvim.builtin.time_based_themes = false
   lvim.builtin.lsp_lines = true
   vim.diagnostic.config { virtual_lines = false } -- i only want to use it explicitly ( by calling the toggle function)
   lvim.builtin.tmux_lualine = true
@@ -20,7 +22,7 @@ M.config = function()
       vim.cmd [[ autocmd WinEnter,BufEnter,VimResized,Filetype * setlocal laststatus=0 ]]
     end
   end
-  -- NOTE: custom icons doesn't work with nerd font v3 yet
+
   lvim.builtin.custom_web_devicons = false
   lvim.use_icons = true -- only set to false if you know what are you doing
   lvim.builtin.sell_your_soul_to_devil.active = true
@@ -33,6 +35,19 @@ M.config = function()
   lvim.builtin.global_statusline = true
   lvim.builtin.dressing.active = true
   lvim.builtin.fancy_wild_menu.active = true
+  lvim.builtin.fancy_diff.active = true
+  lvim.builtin.cheat.active = true
+  lvim.builtin.remote_dev.active = true
+  lvim.builtin.cursorline.active = true
+  lvim.builtin.sidebar.active = true
+  lvim.builtin.file_browser.active = true
+  lvim.builtin.global_statusline = true
+  lvim.builtin.legendary.active = true
+  lvim.builtin.latex = {
+    view_method = "zathura", -- change to zathura if you are on linux
+    preview_exec = "/home/shuvro/.config/zoomus.conf", -- change this to zathura as well
+    rtl_support = true, -- if you want to use xelatex, it's a bit slower but works very well for RTL langs
+  }
   lvim.builtin.refactoring.active = true
   lvim.builtin.test_runner.runner = "neotest"
   lvim.format_on_save = {

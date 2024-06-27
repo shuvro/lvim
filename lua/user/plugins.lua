@@ -870,6 +870,14 @@ M.config = function()
       end,
       enabled = lvim.builtin.markdown.active,
     },
+    {
+      "ellisonleao/gruvbox.nvim",
+      config = function()
+        require("user.gruvbox").config()
+      end,
+      event = "VeryLazy",
+      enabled = lvim.colorscheme == "gruvbox",
+    },
   }
 end
 
