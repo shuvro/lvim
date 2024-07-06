@@ -360,9 +360,9 @@ M.config = function()
       "declancm/cinnamon.nvim",
       config = function()
         require("cinnamon").setup {
-          keymaps = { extra = true },
+          keymaps = { basic = true, extra = false },
           options = {
-            delay = 4,
+            mode = "window",
           },
         }
       end,
@@ -855,13 +855,6 @@ M.config = function()
       enabled = lvim.builtin.dap.active,
     },
     {
-      "mireq/large_file",
-      config = function()
-        require("large_file").setup()
-      end,
-      enabled = not lvim.builtin.bigfile.active,
-    },
-    {
       "abzcoding/markdown.nvim",
       branch = "feature/fancy",
       name = "render-markdown",
@@ -869,6 +862,15 @@ M.config = function()
         require("user.markd").config()
       end,
       enabled = lvim.builtin.markdown.active,
+    },
+    {
+      "abzcoding/project.nvim",
+      name = "new-project",
+      branch = "fix/nvim-12",
+      config = function()
+        require("user.project").config()
+      end,
+      enabled = not lvim.builtin.project.active and lvim.builtin.project.mine,
     },
     {
       "ellisonleao/gruvbox.nvim",

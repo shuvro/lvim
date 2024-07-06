@@ -356,11 +356,6 @@ M.config = function()
   end
   -- lvim.builtin.nvimtree.hide_dotfiles = 0
 
-  -- Project
-  -- =========================================
-  lvim.builtin.project.active = true
-  lvim.builtin.project.detection_methods = { "lsp", "pattern" }
-
   -- Toggleterm
   -- =========================================
   lvim.builtin.terminal.active = true
@@ -605,6 +600,9 @@ M.config = function()
     telescope.load_extension "file_create"
     if lvim.builtin.file_browser.active then
       telescope.load_extension "file_browser"
+    end
+    if lvim.builtin.project.mine then
+      telescope.load_extension "projects"
     end
   end
 
