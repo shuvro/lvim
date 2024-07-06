@@ -98,7 +98,8 @@ M.config = function()
 
   local codelens_viewer = "lua require('user.codelens').show_line_sign()"
   -- NOTE: don't give corporate code to the devil
-  if user and user == "abz" then
+  local user = vim.env.USER
+  if user and user == "shuvro" then
     if lvim.builtin.sell_your_soul_to_devil.active or lvim.builtin.tabnine.active then
       create_aucmd("UIEnter", {
         group = "_lvim_user",

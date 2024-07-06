@@ -872,6 +872,14 @@ M.config = function()
       end,
       enabled = not lvim.builtin.project.active and lvim.builtin.project.mine,
     },
+    {
+      "ellisonleao/gruvbox.nvim",
+      config = function()
+        require("user.gruvbox").config()
+      end,
+      event = "VeryLazy",
+      enabled = lvim.colorscheme == "gruvbox",
+    },
   }
 end
 
