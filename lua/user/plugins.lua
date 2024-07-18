@@ -883,6 +883,14 @@ M.config = function()
       end,
       enabled = not lvim.builtin.which_key.active and lvim.builtin.which_key.mine,
     },
+    {
+      "ellisonleao/gruvbox.nvim",
+      config = function()
+        require("user.gruvbox").config()
+      end,
+      event = "VeryLazy",
+      enabled = lvim.colorscheme == "gruvbox",
+    },
   }
 end
 
