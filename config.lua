@@ -83,7 +83,8 @@ lvim.builtin.which_key.mine = true -- pin to v2.0.1
 -- Custom User Config
 -- =========================================
 local user = vim.env.USER
-if user and user == "abz" then
+
+if user and user == "shuvro" then
   lvim.reload_config_on_save = true
   require("user.custom_user").config()
 end
