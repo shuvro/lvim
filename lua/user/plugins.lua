@@ -148,7 +148,6 @@ M.config = function()
     },
     {
       "mrcjkb/rustaceanvim",
-      version = "^3",
       init = function()
         require("user.rust_tools").config()
       end,
@@ -882,6 +881,15 @@ M.config = function()
         require("user.which").config()
       end,
       enabled = not lvim.builtin.which_key.active and lvim.builtin.which_key.mine,
+    },
+    {
+      "OXY2DEV/helpview.nvim",
+      lazy = true,
+      ft = "help",
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+      },
+      enabled = lvim.builtin.markdown.active,
     },
     {
       "ellisonleao/gruvbox.nvim",
