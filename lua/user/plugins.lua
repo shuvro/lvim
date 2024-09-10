@@ -137,16 +137,6 @@ M.config = function()
       end,
     },
     {
-      "andymass/vim-matchup",
-      event = "BufReadPost",
-      config = function()
-        vim.g.matchup_enabled = 1
-        vim.g.matchup_surround_enabled = 1
-        vim.g.matchup_matchparen_deferred = 1
-        vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      end,
-    },
-    {
       "mrcjkb/rustaceanvim",
       init = function()
         require("user.rust_tools").config()
@@ -855,12 +845,12 @@ M.config = function()
       enabled = lvim.builtin.dap.active,
     },
     {
-      "abzcoding/markdown.nvim",
-      branch = "feature/fancy",
-      name = "render-markdown",
-      config = function()
-        require("user.markd").config()
-      end,
+      "OXY2DEV/markview.nvim",
+      lazy = false,
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-tree/nvim-web-devicons",
+      },
       enabled = lvim.builtin.markdown.active,
     },
     {
