@@ -1,5 +1,10 @@
 # Bloated LunarVim
 
+> [!IMPORTANT] 
+> currently in the process of migrating to other configurations, for now testing [zed](https://github.com/abzcoding/zed) and [lazyvim](https://github.com/abzcoding/nv)
+
+
+
 Do not use as is, use it as a source of inspiration.
 
 I've customized my ZSH/Tmux/[Wezterm](https://github.com/abzcoding/wezterm) too much, so it might not work properly 😅
@@ -577,6 +582,7 @@ Note that,
 | <kbd>Space</kbd>+<kbd>m</kbd>+<kbd>e</kbd> |  𝐍   | Edit Tasks    |
 | <kbd>Space</kbd>+<kbd>m</kbd>+<kbd>l</kbd> |  𝐍   | List Tasks    |
 | <kbd>Space</kbd>+<kbd>r</kbd>+<kbd>f</kbd> |  𝐍   | Run File      |
+| <kbd>Space</kbd>+<kbd>r</kbd>+<kbd>l</kbd> |  𝐍   | Run Last      |
 | <kbd>Space</kbd>+<kbd>r</kbd>+<kbd>p</kbd> |  𝐍   | Run Project   |
 
 ### Plugin: Gitsigns
